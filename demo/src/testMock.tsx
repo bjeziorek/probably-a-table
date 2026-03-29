@@ -1,6 +1,6 @@
 import { t } from "i18next"
 import { TagIcon } from "lucide-react";
-import { Badge, Button, Flex, Tooltip } from "@radix-ui/themes";
+import { Badge, Flex, Tooltip } from "@radix-ui/themes";
 import type { TableColumnsColumns, TableFiltersFilters } from "probably-a-table";
 
 export interface FiltersMock {
@@ -234,20 +234,6 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
       <Badge color={model.status === "ready" ? "green" : "amber"}>
         {model.status}
       </Badge>
-    )
-  },
-  {
-    id: "actions",
-    label: "Actions",
-    visible: true,
-    render: (model) => (
-      <Button
-        disabled={model.status !== "ready"}
-        variant="soft"
-        onClick={()=>null}//{loadModel(model.id.toString())}
-      >
-        Load
-      </Button>
     )
   },
   {

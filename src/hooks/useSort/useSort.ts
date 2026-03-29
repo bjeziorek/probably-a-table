@@ -5,7 +5,7 @@ import type { TableSortSort } from "../../types/sort";
 import { sortColumn } from './utils/sortColumn'
 import { toggleSortState } from './utils/toggleSortState'
 
-export function useSort<Data>(data: TableData<Data>) {
+export function useSort<Data extends { id: string | number; }>(data: TableData<Data>) {
     const [sort, setSort] = useState<TableSortSort<Data>>({
         column: null,
         direction: "asc",

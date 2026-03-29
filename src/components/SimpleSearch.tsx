@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import type { TableSearchSearch, TableSearchSetSearch } from "../types/search";
 import { defaultTranslations } from "./translations/defaultTranslations";
 import { Flex, TextField } from "@radix-ui/themes";
@@ -10,7 +9,6 @@ interface SimpleSearchProps {
 
 export function SimpleSearch(props: SimpleSearchProps) {
     const { search, setSearch } = props;
-    const { t } = useTranslation();
 
     return (
         <>

@@ -5,7 +5,6 @@ import { useFilter } from "../hooks/useFilter/useFilter";
 import { usePagination } from "../hooks/usePagination/usePagination";
 import { useColumns } from "../hooks/useColumns/useColumns";
 import { SimpleSearch } from "../components/SimpleSearch";
-import { Filters } from "../components/Filters";
 import { TableMenu } from "../components/TableMenu";
 import { TableFull } from "../components/table/TableFull";
 import type { TableData } from "../types/data";
@@ -28,7 +27,7 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
 
     // STATES
     const [search, setSearch] = useState("");
-    const [open, setOpen] = useState(false);
+   // const [open, setOpen] = useState(false);
 
 
     // CONSTS
@@ -36,9 +35,7 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
 
     // HOOKS
     const { t } = useTranslation();
-    const { filtered, filters, setFilters,
-        handleReset,
-        isPending } = useFilter<Data, Filters>(propData, debouncedSearch, propFilters, defaultFilters);
+    const { filtered } = useFilter<Data, Filters>(propData, debouncedSearch, propFilters, defaultFilters);
     const { sortedData, sort, toggleSort } = useSort(filtered)
     const { paginated,
         page,

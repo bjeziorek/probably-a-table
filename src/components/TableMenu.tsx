@@ -1,5 +1,4 @@
 import { Button, DropdownMenu, Flex, Select, Text } from "@radix-ui/themes";
-import { t } from "i18next";
 import type { TablePaginationPage, TablePaginationPageSize, TablePaginationSetPage, TablePaginationSetPageSize, TablePaginationTotalPages } from "../types/pagination";
 import type { TableColumnsColumns, TableColumnsToggleColumn } from "../types/columns";
 import { defaultTranslations } from "./translations/defaultTranslations";
