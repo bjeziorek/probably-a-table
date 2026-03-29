@@ -200,7 +200,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     id: "name",
     label: "Name",
     visible: true,
-    render: (model) => t(model.name)
+    render: (model) => model.name
   },
   {
     id: "description",

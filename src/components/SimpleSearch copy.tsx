@@ -1,6 +1,6 @@
-import { Flex, TextField } from "@radix-ui/themes";
 import { useTranslation } from "react-i18next";
 import type { TableSearchSearch, TableSearchSetSearch } from "../types/search";
+import { defaultTranslations } from "./translations/defaultTranslations";
 
 interface SimpleSearchProps {
     search: TableSearchSearch,
@@ -14,14 +14,12 @@ export function SimpleSearch(props: SimpleSearchProps) {
     return (
         <>
             <h2 className='sr-only'>{t("table.simpleSearch")}</h2>
-            <Flex justify="between" align="center" mb="4">
-                <TextField.Root
-                    placeholder={t("models.searchSimplePlaceholder")}
+           <input
+                    placeholder={defaultTranslations.searchSimpleSeachPlaceholder}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     style={{ width: "300px" }}
                 />
-            </Flex>
         </>
 
     )

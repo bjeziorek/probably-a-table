@@ -1,16 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import TableWrapper from './TableWrapper';
-
 import { Theme } from '@radix-ui/themes';
 import { describe, expect, it, vi } from 'vitest';
 import userEvent from "@testing-library/user-event";
 import { defaultFilters, filterMock, newData, newDataColumns } from '../testData/testMock';
+import ProbablyATable from './ProbablyATable';
 
 describe('TableWrapper renders and has required interactions', () => {
     it('renders table menu', () => {
         render(
             <Theme>
-                <TableWrapper columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
+                <ProbablyATable columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
             </Theme>
         );
         expect(screen.getByText("table.tableMenu")).toBeInTheDocument();
@@ -18,7 +17,7 @@ describe('TableWrapper renders and has required interactions', () => {
     it('renders simple search', () => {
         render(
             <Theme>
-                <TableWrapper columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
+                <ProbablyATable columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
             </Theme>
         );
         expect(screen.getByText("table.simpleSearch")).toBeInTheDocument();
@@ -28,7 +27,7 @@ describe('TableWrapper renders and has required interactions', () => {
 
         render(
             <Theme>
-                <TableWrapper columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
+                <ProbablyATable columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
             </Theme>
         );
         expect(screen.getByRole('textbox')).toBeInTheDocument();

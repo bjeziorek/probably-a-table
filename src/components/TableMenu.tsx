@@ -2,6 +2,7 @@ import { Button, DropdownMenu, Flex, Select, Text } from "@radix-ui/themes";
 import { t } from "i18next";
 import type { TablePaginationPage, TablePaginationPageSize, TablePaginationSetPage, TablePaginationSetPageSize, TablePaginationTotalPages } from "../types/pagination";
 import type { TableColumnsColumns, TableColumnsToggleColumn } from "../types/columns";
+import { defaultTranslations } from "./translations/defaultTranslations";
 
 interface TableMenuProps<Data> {
     page: TablePaginationPage,
@@ -26,19 +27,19 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
 
     return (
         <>
-        <h2 className="sr-only">{t("table.tablemenu")}</h2>
+        <h2 className="sr-only">{defaultTranslations.tableMenuSR}</h2>
         <Flex gap="3" align="center" mt="4">
             <DropdownMenu.Root>
                 <DropdownMenu.Trigger>
-                    <Button variant="soft">{t("models.columns")}</Button>
+                    <Button variant="soft">{defaultTranslations.tableMenuColumnsBtn}</Button>
                 </DropdownMenu.Trigger>
 
                 <DropdownMenu.Content>
                     {columns.map(col => (
                         <DropdownMenu.CheckboxItem
-                            key={col.id.toString()}
+                            key={col.id}
                             checked={col.visible}
-                            onCheckedChange={() => toggleColumn(col.id.toString())}
+                            onCheckedChange={() => toggleColumn(col.id)}
                         >
                             {col.label}
                         </DropdownMenu.CheckboxItem>
@@ -51,17 +52,17 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
                 disabled={page === 1}
                 onClick={() => setPage(p => p - 1)}
             >
-                Poprzednia
+                {defaultTranslations.tableMenuPreviousBtn}
             </Button>
             <Text>
-                Strona {page} z {totalPages}
+                {defaultTranslations.tableMenuPageLbl} {page} z {totalPages}
             </Text>
             <Button
                 variant="soft"
                 disabled={page === totalPages}
                 onClick={() => setPage(p => p + 1)}
             >
-                Następna
+                {defaultTranslations.tableMenuNextBtn}
             </Button>
             <Select.Root
                 value={String(pageSize)}

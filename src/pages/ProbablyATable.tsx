@@ -1,4 +1,3 @@
-
 import { Card } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { useSort } from "../hooks/useSort/useSort";
@@ -15,16 +14,14 @@ import type { TableColumnsColumns } from "../types/columns";
 import { useTranslation } from "react-i18next";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
-
-
-interface TableWrapperProps<Data extends { id: string | number; }, Filters> {
+interface ProbablyATableProps<Data extends { id: string | number; }, Filters> {
     columns: TableColumnsColumns<Data>,
     data: TableData<Data>,
     filters: TableFiltersFilters<Filters>,
     defaultFilters: TableFiltersFilters<Filters>,
 }
 
-export default function TableWrapper<Data extends { id: string | number; }, Filters>(props: TableWrapperProps<Data, Filters>) {
+export default function ProbablyATable<Data extends { id: string | number; }, Filters>(props: ProbablyATableProps<Data, Filters>) {
 
     // PROPS
     const { columns: propCols, data: propData, filters: propFilters, defaultFilters } = props;
