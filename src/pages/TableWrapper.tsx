@@ -12,7 +12,6 @@ import { TableFull } from "../components/table/TableFull";
 import type { TableData } from "../types/data";
 import type { TableFiltersFilters } from "../types/filters";
 import type { TableColumnsColumns } from "../types/columns";
-import { defaultFilters } from "@/modules/nn/pages/testMock";
 import { useTranslation } from "react-i18next";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 
@@ -21,13 +20,14 @@ import { useDebouncedValue } from "../hooks/useDebouncedValue";
 interface TableWrapperProps<Data extends { id: string | number; }, Filters> {
     columns: TableColumnsColumns<Data>,
     data: TableData<Data>,
-    filters: TableFiltersFilters<Filters>
+    filters: TableFiltersFilters<Filters>,
+    defaultFilters: TableFiltersFilters<Filters>,
 }
 
 export default function TableWrapper<Data extends { id: string | number; }, Filters>(props: TableWrapperProps<Data, Filters>) {
 
     // PROPS
-    const { columns: propCols, data: propData, filters: propFilters } = props;
+    const { columns: propCols, data: propData, filters: propFilters, defaultFilters } = props;
 
     // STATES
     const [search, setSearch] = useState("");

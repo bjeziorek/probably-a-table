@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Select, Theme } from '@radix-ui/themes';
-import { SimpleSearch } from './SimpleSearch';
-import { vi, type Mock } from 'vitest';
+import { Theme } from '@radix-ui/themes';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 import userEvent from "@testing-library/user-event";
 import { TableMenu } from './TableMenu';
 import type { Procedure } from '@vitest/spy';
@@ -151,7 +150,4 @@ describe('TableMenu tests', () => {
         expect(setPageSize).toHaveBeenCalledWith(20);
         expect(setPage).toHaveBeenCalledWith(1);
     });
-
-
-
 })

@@ -1,10 +1,20 @@
 {
   "name": "probably-a-table",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A table. Probably.",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "build": "tsup src/index.ts --format esm,cjs --dts"
   },
   "repository": {
@@ -19,21 +29,25 @@
   },
   "homepage": "https://github.com/bjeziorek/probably-a-table#readme",
   "peerDependencies": {
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/themes": "^3.3.0",
+    "i18next": "^25.10.1",
+    "lucide-react": "^0.577.0",
+    "motion": "^12.38.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@radix-ui/themes": "^3.3.0",
-    "@radix-ui/react-collapsible": "^1.1.12",
-    "motion": "^12.38.0",
-    "tailwindcss": "^4.2.2",
-    "lucide-react": "^0.577.0",
-    "i18next": "^25.10.1",
-    "react-i18next": "^16.6.0"
+    "react-i18next": "^16.6.0",
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.0",
-    "tsup": "^8.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^29.0.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.2"
   }
-
 }

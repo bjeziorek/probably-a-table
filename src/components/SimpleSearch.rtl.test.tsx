@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Theme } from '@radix-ui/themes';
 import { SimpleSearch } from './SimpleSearch';
-import { vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import userEvent from "@testing-library/user-event";
 
 describe('SimpleSearch tests',()=>{

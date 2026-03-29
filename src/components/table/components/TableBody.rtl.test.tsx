@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Theme } from '@radix-ui/themes';
-import { vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { TableColumnsColumns } from '../../../types/columns';
 import { TableBody } from './TableBody';
 

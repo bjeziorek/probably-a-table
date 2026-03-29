@@ -1,2 +1,2 @@
-export {default as TableWrapper} from "./pages/TableWrapper";
+export {default as ProbablyATable} from "./pages/TableWrapper";
 export * from './types';

@@ -5,7 +5,7 @@ import type { TableSearchSearch } from "../../types/search";
 import type { TableFiltersFilters } from "../../types/filters";
 import { filter } from "./utils/filter";
 
-export function useFilter<Data,Filters>(
+export function useFilter<Data extends { id: string | number; },Filters>(
     data:TableData<Data>, 
     search:TableSearchSearch, 
     propFilters:TableFiltersFilters<Filters>, 
