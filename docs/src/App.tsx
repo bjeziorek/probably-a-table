@@ -1,5 +1,5 @@
 import './App.css'
-import { ProbablyATable } from 'probably-a-table'
+import { ProbablyATable } from './../../src'
 import { defaultFilters, filterMock, newData, newDataColumns } from './testMock'
 import { docsDefaultFilters, docsFilterMock, docsData, docsColumns } from './docs';
 import { Card, Text } from '@radix-ui/themes'
