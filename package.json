@@ -1,0 +1,39 @@
+{
+  "name": "probably-a-table",
+  "version": "1.0.0",
+  "description": "A table. Probably.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjeziorek/probably-a-table.git"
+  },
+  "keywords": [],
+  "author": "Barbara Jeziorek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bjeziorek/probably-a-table/issues"
+  },
+  "homepage": "https://github.com/bjeziorek/probably-a-table#readme",
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@radix-ui/themes": "^3.3.0",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "motion": "^12.38.0",
+    "tailwindcss": "^4.2.2",
+    "lucide-react": "^0.577.0",
+    "i18next": "^25.10.1",
+    "react-i18next": "^16.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "tsup": "^8.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+
+}
