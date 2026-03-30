@@ -12,18 +12,27 @@ import type { TableFiltersFilters } from "../types/filters";
 import type { TableColumnsColumns } from "../types/columns";
 import { useTranslation } from "react-i18next";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
+import { type TablePaginationPageSizeConfig } from "../types";
+import { defaultPaginationConfig } from "../defaultConfigs/defaultPaginationConfig";
 
 interface ProbablyATableProps<Data extends { id: string | number; }, Filters> {
     columns: TableColumnsColumns<Data>,
     data: TableData<Data>,
     filters: TableFiltersFilters<Filters>,
     defaultFilters: TableFiltersFilters<Filters>,
+    paginationConfig?: TablePaginationPageSizeConfig
 }
 
 export default function ProbablyATable<Data extends { id: string | number; }, Filters>(props: ProbablyATableProps<Data, Filters>) {
 
     // PROPS
-    const { columns: propCols, data: propData, filters: propFilters, defaultFilters } = props;
+    const { 
+        columns: propCols, 
+        data: propData, 
+        filters: propFilters, 
+        defaultFilters, 
+        paginationConfig = defaultPaginationConfig 
+    } = props;
 
     // STATES
     const [search, setSearch] = useState("");
@@ -42,7 +51,7 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
         setPage,
         totalPages,
         pageSize,
-        setPageSize } = usePagination(sortedData)
+        setPageSize } = usePagination(sortedData, paginationConfig.defaultPageSize)
     const { toggleColumn,
         columns,
         handleDrop,
@@ -64,7 +73,7 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
 
 
             <Card className="mt-4">
-                <TableMenu page={page} setPage={setPage} totalPages={totalPages} setPageSize={setPageSize} pageSize={pageSize} columns={columns} toggleColumn={toggleColumn}></TableMenu>
+                <TableMenu page={page} setPage={setPage} totalPages={totalPages} setPageSize={setPageSize} pageSize={pageSize} columns={columns} toggleColumn={toggleColumn} paginationConfig={paginationConfig}></TableMenu>
 
 
                 <TableFull columns={columns} setDragged={setDragged} handleDrop={handleDrop} toggleSort={toggleSort} sort={sort} paginated={paginated}></TableFull>

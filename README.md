@@ -37,7 +37,10 @@ You can still find the code in the repo if you really want to waste your preciou
 RTL blows up inside the library but works in the original MLOps project — needs further investigation.
 
 The API may change in upcoming releases.  
-For example, pagination size configuration will be added soon — and don’t worry, no fancy generics this time, just a simple `number[]`.
+~~For example, pagination size configuration was supposed to be added soon — and don’t worry, no fancy generics this time, just a simple `number[]`.~~ 
+Good news: it made it into v0.1.
+Bad news: it’s not a simple number[] after all.
+Good news: at least there are no generics involved.”
 
 No button translations yet — just default English — and some `t()` leftovers here and there, which don’t work in isolation. I’ll fix it and add a translation option soon. Looks like an easy thing. *Looks.* We shall see.
 
@@ -268,6 +271,21 @@ export const defaultFilters: TableFiltersFilters<FiltersMock> = {
 To be honest, you don’t need to think about this at all — just copy‑paste these three things and feed them to <ProbablyATable>.
 It requires them, but does nothing with them (yet).
 
+4. `paginationConfig` - optional
+It's totally fine if you don't provide this prop — it's optional.
+In that case, ProbablyATable will load the default configuration:
+```js 
+const defaultPaginationConfig: TablePaginationPageSizeConfig = {
+    defaultPageSize: 10,
+    availablePageSizes: [5, 10, 20, 50, 100]
+}
+```
+This means your table will show 10 rows by default (defaultPageSize),
+and the page size menu will let you choose from: 5, 10, 20, 50, 100.
+
+If you want a different setup, just create your own configuration object of type `TablePaginationPageSizeConfig`.
+
+
 ### Final result
 ```js
 <ProbablyATable 
@@ -295,7 +313,7 @@ So I decided to give developers access to **every type I have**, because:
 Here’s the full list of exported types:
 
 ```js type 
-TableData<T extends {
+type TableData<T extends {
     id: string | number;
 }> = T[];
 
@@ -317,18 +335,6 @@ type TableColumnsColumn<Data> = {
 type TableColumnsColumns<T> = TableColumnsColumn<T>[];
 type TableColumnsToggleColumn = (id: string) => void;
 
-interface TableWrapperProps<Data extends {
-    id: string | number;
-}, Filters> {
-    columns: TableColumnsColumns<Data>;
-    data: TableData<Data>;
-    filters: TableFiltersFilters<Filters>;
-    defaultFilters: TableFiltersFilters<Filters>;
-}
-declare function TableWrapper<Data extends {
-    id: string | number;
-}, Filters>(props: TableWrapperProps<Data, Filters>): react_jsx_runtime.JSX.Element;
-
 type TableDragDragged = string | null;
 type TableDragSetDragged = React.Dispatch<React.SetStateAction<TableDragDragged>>;
 type TableDragHandleDrop = (targetKey: string) => void;
@@ -338,6 +344,10 @@ type TablePaginationSetPage = React.Dispatch<React.SetStateAction<TablePaginatio
 type TablePaginationTotalPages = number;
 type TablePaginationPageSize = number;
 type TablePaginationSetPageSize = React.Dispatch<React.SetStateAction<TablePaginationPageSize>>;
+interface TablePaginationPageSizeConfig {
+    defaultPageSize: number;
+    availablePageSizes: number[];
+}
 
 type TableSearchSearch = string;
 type TableSearchSetSearch = React.Dispatch<React.SetStateAction<TableSearchSearch>>;
@@ -348,10 +358,23 @@ type TableSortSort<Data> = {
     direction: TableSortDirection;
 };
 type TableSortToggleSort<Data> = (column: TableColumnsColumn<Data> | null) => void;
+
+interface ProbablyATableProps<Data extends {
+    id: string | number;
+}, Filters> {
+    columns: TableColumnsColumns<Data>;
+    data: TableData<Data>;
+    filters: TableFiltersFilters<Filters>;
+    defaultFilters: TableFiltersFilters<Filters>;
+    paginationConfig?: TablePaginationPageSizeConfig;
+}
+declare function ProbablyATable<Data extends {
+    id: string | number;
+}, Filters>(props: ProbablyATableProps<Data, Filters>): react_jsx_runtime.JSX.Element;
 ```
 
 ## 5. Examples of table
-All you need it this:
+All you need is this:
 ```js 
 <ProbablyATable 
     columns={newDataColumns} 
@@ -360,18 +383,36 @@ All you need it this:
     defaultFilters={defaultFilters}
 />
 ```
+Optionally:
+```js 
+<ProbablyATable 
+    columns={newDataColumns} 
+    data={newData} 
+    filters={filterMock} 
+    defaultFilters={defaultFilters}
+    paginationConfig={paginationConfigData}
+/>
+```
 And all your creativity goes into the render field.
 Nothing else to mess with. Yet.
-But filters in v0.2 will bring some fun. And pain...
+But filters will bring some fun. And pain...
 
 ## 6.Roadmap
 ### v 0.2
-- [ ] RTL-friendly API
-- [ ] Fixing filters
-- [ ] Adding API for pagination configuration
-### v 0.3
-- [ ] Adding optional built‑in styles so the table doesn’t depend on the user’s CSS setup
+- [ ] Configurable menu position and visibility of its elements
+- [ ] Merge `SimpleSearch` as a configurable part of the table
+- [ ] Consider renaming some types — they’re really long, slightly epileptic in their current camelCase form, and honestly drive me mad
+- [ ] Write a Python automation script so I don’t have to manually rewrite this README into the fancy JSX‑driven JSON that ProbablyATable likes
+- [ ] Add an API to disable column sorting (I really hope no one gets the idea to sort my documentation steps alphabetically… unless someone genuinely enjoys puzzles). Also add a “reset sorting” button in the menu.
 
+
+### v 0.3
+- [ ] Fixing filters (read: remake them from scratch, but self‑generating and super cool, with zero consideration for feasibility — otherwise I’d never even touch this)
+
+### Wishlist for the future
+- [ ] Add optional built‑in styles so the table doesn’t depend on the user’s CSS setup
+- [ ] RTL-friendly API
+- [ ] JSDocs
 7. Contributing
 Emm… give me a moment, I’m new to this.
 If you really want to contribute — amazing, thank you!
@@ -380,4 +421,4 @@ Just open an issue or a PR and I’ll try to figure out what to do with it.
 More proper guidelines will appear here once I learn how to write them without crying.
 
 ## 8. Demo link
-// to add
+[Demo](https://bjeziorek.github.io/probably-a-table/)

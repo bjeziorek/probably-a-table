@@ -1,5 +1,5 @@
 import { Button, DropdownMenu, Flex, Select, Text } from "@radix-ui/themes";
-import type { TablePaginationPage, TablePaginationPageSize, TablePaginationSetPage, TablePaginationSetPageSize, TablePaginationTotalPages } from "../types/pagination";
+import type { TablePaginationPage, TablePaginationPageSize, TablePaginationPageSizeConfig, TablePaginationSetPage, TablePaginationSetPageSize, TablePaginationTotalPages } from "../types/pagination";
 import type { TableColumnsColumns, TableColumnsToggleColumn } from "../types/columns";
 import { defaultTranslations } from "./translations/defaultTranslations";
 
@@ -10,7 +10,8 @@ interface TableMenuProps<Data> {
     setPageSize: TablePaginationSetPageSize,
     pageSize: TablePaginationPageSize,
     columns: TableColumnsColumns<Data>,
-    toggleColumn: TableColumnsToggleColumn
+    toggleColumn: TableColumnsToggleColumn,
+    paginationConfig: TablePaginationPageSizeConfig
 }
 
 export function TableMenu<Data>(props: TableMenuProps<Data>) {
@@ -21,7 +22,8 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
         setPageSize,
         pageSize,
         columns,
-        toggleColumn
+        toggleColumn,
+        paginationConfig
     } = props;
 
     return (
@@ -72,10 +74,9 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
             >
                 <Select.Trigger />
                 <Select.Content>
-                    <Select.Item value="4">4</Select.Item>
-                    <Select.Item value="10">10</Select.Item>
-                    <Select.Item value="20">20</Select.Item>
-                    <Select.Item value="50">50</Select.Item>
+                    {paginationConfig.availablePageSizes.map(size=>(
+                           <Select.Item value={size.toString()}>{size}</Select.Item>
+                    ))}
                 </Select.Content>
             </Select.Root>
         </Flex>

@@ -20,15 +20,15 @@ export const docsDefaultFilters: TableFiltersFilters<FiltersMock> = {
 
 export const docsData: NewData[] = [
   {
-    id:1,
+    id: 1,
     "description": {
       header: 'probably-a-table',
       data: ["A table. Probably."],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:2,
+    id: 2,
     "description": {
       header: 'Description',
       data: [
@@ -36,10 +36,10 @@ export const docsData: NewData[] = [
         "There are a million better ones out there, but who’s going to stop me."
       ]
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:3,
+    id: 3,
     "description": {
       header: 'Why I built this',
       data: [
@@ -48,10 +48,10 @@ export const docsData: NewData[] = [
         "On the bright side, I learned a lot about generics, RTL and building libraries. And… learning to be a bit more responsible for my irresponsible ideas — like, you know, building an entire table library by accident."
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:4,
+    id: 4,
     "description": {
       header: 'Exact origin',
       data: ["And do you know where this whole thing actually came from? Well… forget the table — I decided to build a microservices backend for some ML stuff in Python (which I don’t even know), hook it all together with an API gateway in Node, and then write a React front for it. At some point I needed a table.",
@@ -60,18 +60,18 @@ export const docsData: NewData[] = [
         "And that’s when I got the idea to refactor all that spaghetti — and that’s how this library was born."
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:5,
+    id: 5,
     "description": {
       header: 'Status',
       data: ["This project is in more or less active development."],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:6,
+    id: 6,
     "description": {
       header: 'Features in v0.1',
       data: ["- the basic table with customizable cell rendering (see the API section to make your cells look super cool)",
@@ -83,24 +83,27 @@ export const docsData: NewData[] = [
         "- a working demo"
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:7,
+    id: 7,
     "description": {
       header: 'Known issues',
       data: ["Filters are temporarily broken (yes, I know) and commented out (none always looks better than broken, doesn’t it?).  ",
         "You can still find the code in the repo if you really want to waste your precious time looking at it.",
         "RTL blows up inside the library but works in the original MLOps project — needs further investigation.",
         "The API may change in upcoming releases.  ",
-        "For example, pagination size configuration will be added soon — and don’t worry, no fancy generics this time, just a simple `number[]`.",
-        "No button translations yet — just default English — and some `t()` leftovers here and there, which don’t work in isolation. I’ll fix it and add a translation option soon. Looks like an easy thing. *Looks.* We shall see.",
+        "For example, pagination size configuration was supposed to be added soon — and don’t worry, no fancy generics this time, just a simple number[].",
+        "Good news: it shipped into v0.1.",
+        "Bad news: it’s not a simple number[] after all.",
+        "Good news: at least there are no generics involved.",
+        "No button translations yet — just default English — and some t() leftovers here and there, which don’t work in isolation. I’ll fix it and add a translation option soon. Looks like an easy thing. *Looks.* We shall see.",
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:8,
+    id: 8,
     "description": {
       header: 'Requirements',
       data: ["- React 18",
@@ -109,10 +112,10 @@ export const docsData: NewData[] = [
         "- TypeScript",
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:9,
+    id: 9,
     "description": {
       header: 'Installation',
       data: ["~~npm install probably-a-table~~  // doesn't work yet",
@@ -120,238 +123,252 @@ export const docsData: NewData[] = [
         "In case you still want to play with it and don’t want to use npm (don’t harm yourself in such a way, unless you really enjoy it — I don’t judge) or there is no npm publish yet because lazy-always-busy-me didn’t do it yet (the only reasonable argument to look at this section), then:",
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:10,
+    id: 10,
     "description": {
       header: '',
       data: ["Fork and clone the repo:  ",
       ],
     },
-    "code": ['`git clone here-paste-the-repo-link-for-cloning-not-the-url-to-be-clear`'],
+    "code": ['git clone here-paste-the-repo-link-for-cloning-not-the-url-to-be-clear'],
   },
   {
-    id:11,
+    id: 11,
     "description": {
       header: '',
       data: [
         "Install dependencies:"
       ],
     },
-    "code": ['`npm i`'],
+    "code": ['npm i'],
   },
   {
-    id:12,
+    id: 12,
     "description": {
       header: '',
       data: [
         "Install yalc globally in case you don’t have it (it’s something like a local npm):"
       ],
     },
-    "code": ['`npm i -g yalc`'],
+    "code": ['npm i -g yalc'],
   },
   {
-    id:13,
+    id: 13,
     "description": {
       header: '',
       data: ["Build and publish the library to your local yalc. Don’t worry, it will stay only on your computer and you’ll be able to install it in your projects just like with npm — the commands are just a bit different."
       ],
     },
-    "code": [''],
+    "code": [],
   },
   {
-    id:14,
+    id: 14,
     "description": {
       header: '',
       data: ["First build:"
       ],
     },
-    "code": ['`npm run build`'],
+    "code": ['npm run build'],
   },
   {
-    id:15,
+    id: 15,
     "description": {
       header: '',
       data: ["Then publish:"
       ],
     },
-    "code": ['`yalc publish`'],
+    "code": ['yalc publish'],
   },
   {
-    id:16,
+    id: 16,
     "description": {
       header: '',
       data: ["Now you can close this project and open any project where you want to use my probably-a-table. Add the package using:"
       ],
     },
-    "code": ['`yalc add probably-a-table`'],
+    "code": ['yalc add probably-a-table'],
   },
   {
-    id:17,
+    id: 17,
     "description": {
       header: 'Peer dependencies',
       data: ["Run this command regardless of whether you use npm or yalc:"
       ],
     },
-    "code": ['`npm install react react-dom @radix-ui/react-dropdown-menu @radix-ui/react-tooltip`'],
+    "code": ['npm install react react-dom @radix-ui/react-dropdown-menu @radix-ui/react-tooltip'],
   },
   {
-    id:18,
+    id: 18,
     "description": {
       header: 'Quick Start',
       data: [""
       ],
     },
-    "code": ['`import { ProbablyATable } from "probably-a-table";`'],
+    "code": ['import { ProbablyATable } from "probably-a-table";'],
   },
   {
-    id:19,
+    id: 19,
     "description": {
       header: 'The simplest component',
-      data: [""
-      ],
+      data: [""],
     },
-    "code": ['export default function App() {',
+    "code": [
+      'export default function App() {',
       '  return (',
-      ' <ProbablyATable',
-      ' data={data}',
-      ' columns={columns}',
-      ' filters={filters}',
-      '  defaultFilters={filters}',
-      '/>',
-      ' );',
-      '}']
+      '    <ProbablyATable',
+      '      data={data}',
+      '      columns={columns}',
+      '      filters={filters}',
+      '      defaultFilters={filters}',
+      '    />',
+      '  );',
+      '}'
+    ]
   },
   {
-    id:20,
+    id: 20,
     "description": {
       header: '',
       data: [
         "Remember that this library requires Radix Theme (don’t confuse it with Radix UI).",
-        "So in your main.ts you need to wrap your app in `<Theme>` like this:",
+        "So in your main.ts you need to wrap your app in <Theme> like this:",
       ],
     },
-    "code": ['<Theme>',
+    "code": [
+      '<Theme>',
       '  <App />',
       '</Theme>',
     ]
   },
   {
-    id:21,
+    id: 21,
     "description": {
       header: '',
-      data: ["If you want the fancy colour switcher I have in my demo, just add `<ThemePanel>`:"
+      data: [
+        "If you want the fancy colour switcher I have in my demo, just add <ThemePanel>:"
       ],
     },
-    "code": ['<Theme>',
+    "code": [
+      '<Theme>',
       '  <ThemePanel />',
       '  <App />',
       '</Theme>',]
   },
   {
-    id:22,
+    id: 22,
     "description": {
       header: 'Styles configuration',
-      data: ["If you want your own styles from scratch, feel free to ignore this section.",
+      data: [
+        "If you want your own styles from scratch, feel free to ignore this section.",
         "Since the library is accidentally headless (= no styles), and you belong - like me - to the half of devs who would gladly yeet CSS into the sun, I have good news for you:",
-        "you can turn on styling without writing a single line of CSS — just copy‑paste the code below into your `index.css`:"
+        "you can turn on styling without writing a single line of CSS — just copy‑paste the code below into your index.css:"
       ],
     },
-    "code": ['@import "tailwindcss";',
-      ' @import "@radix-ui/themes/styles.css";',
-      ' .sr-only {',
+    "code": [
+      '@import "tailwindcss";',
+      '@import "@radix-ui/themes/styles.css";',
+      '.sr-only {',
       '   visibility: hidden;',
-      ' }',
+      '}',
     ]
   },
   {
-    id:23,
+    id: 23,
     "description": {
       header: '',
-      data: ["The `sr-only` class is for screen‑reader labels only and must stay invisible so it doesn’t mess with the normal UI. That’s why you need this class.",
+      data: [
+        "The sr-only class is for screen‑reader labels only and must stay invisible so it doesn’t mess with the normal UI. That’s why you need this class.",
         "It’s also used for catching components in RTL tests.",
         "In a future version I might add some built‑in styles and let you toggle them through props, but I’m not sure yet."
       ],
     },
-    "code": ['']
+    "code": []
   },
   {
-    id:24,
+    id: 24,
     "description": {
       header: 'API Reference - ProbablyATable props',
-      data: ["- **data** — your raw table data as an array of any JSON objects. The table will swallow them as a generic type.",
+      data: [
+        "- **data** — your raw table data as an array of any JSON objects. The table will swallow them as a generic type.",
         "- **columns** — the column configuration object.",
         "- **filters** — the filters configuration object (filters don’t work in version 0.1, so don’t bother — just copy‑paste the placeholder for now).",
-        "- **defaultFilters** — same structure as `filters`. I might merge them in the future, not sure yet."
+        "- **defaultFilters** — same structure as filters. I might merge them in the future, not sure yet."
       ],
     },
-    "code": ['']
+    "code": []
   },
   {
-    id:25,
+    id: 25,
     "description": {
       header: 'Examples of props',
-      data: [""
-      ],
+      data: [""],
     },
-    "code": ['']
+    "code": []
   },
   {
-    id:26,
+    id: 26,
     "description": {
-      header: '`data`',
-      data: ["`newData` is simply your dataset — whatever shape you want.",
-        "This is what you pass to `<ProbablyATable data={newData} ...>`:"
+      header: 'data',
+      data: [
+        "newData is simply your dataset — whatever shape you want.",
+        "This is what you pass to <ProbablyATable data={newData} ...>:"
       ],
     },
-    "code": ['export const newData: NewData[] = [',
-      '    {',
-      '   "id": 1,',
+    "code": [
+      'export const newData: NewData[] = [',
+      '{',
+      '  "id": 1,',
       '  "name": "Vision Encoder v3",',
       '  "description": "Model do ekstrakcji cech z obrazów.",',
-      ' baseModel": "resnet50,',
-      ' "version": "3.2.1,',
-      '    "loraCount": 1,',
-      '    "status": "ready",',
+      '  "baseModel": "resnet50,',
+      '  "version": "3.2.1,',
+      '  "loraCount": 1,',
+      '  "status": "ready",',
       '  "type": "vision",',
-      '    "tags": ["vision", "encoder"],',
+      '  "tags": ["vision", "encoder"],',
       '  "size": "98M",',
-      ' "details": "Model zoptymalizowany do szybkiej ekstrakcji cech."',
+      '  "details": "Model zoptymalizowany do szybkiej ekstrakcji cech."',
       '}',
-      ']']
+      ']'
+    ]
   },
   {
-    id:27,
+    id: 27,
     "description": {
       header: '',
-      data: ["It’s nice if you create an interface for your data",
+      data: [
+        "It’s nice if you create an interface for your data",
         "(your future self will thank you… or curse me and my generics — more likely).",
-        "Why is it called `NewData`?",
-        "Because in the previous version I had Data, messed it up, made a new dataset, and naming it `NewData` felt… logical.",
+        "Why is it called NewData?",
+        "Because in the previous version I had Data, messed it up, made a new dataset, and naming it NewData felt… logical.",
         "Is it descriptive? No.",
         "Will the world collapse because of one off‑name? Hopefully not."
       ],
     },
-    "code": ['export interface NewData {',
+    "code": [
+      'export interface NewData {',
       '   id: number;',
       '   name: string;',
-      '  description: string;',
+      '   description: string;',
       '   baseModel: string;',
-      '  version: string;',
-      '    loraCount: number;',
-      ' status: "ready" | "loading";',
-      'type: string;',
-      ' tags: string[];',
-      ' size: string;',
-      ' details: string;',
+      '   version: string;',
+      '   loraCount: number;',
+      '   status: "ready" | "loading";',
+      '   type: string;',
+      '   tags: string[];',
+      '   size: string;',
+      '   details: string;',
+      '}'
     ]
   },
   {
-    id:28,
+    id: 28,
     "description": {
-      header: '`columns`',
-      data: ["Columns are of type TableColumnsColumns<T>, and this T is your interface — in this example:",
+      header: 'columns',
+      data: [
+        "Columns are of type TableColumnsColumns<T>, and this T is your interface — in this example:",
         "TableColumnsColumns<NewData>.",
         "Columns have four fields:",
         "- *id* — must match the field names of NewData (keyof T).",
@@ -362,58 +379,113 @@ export const docsData: NewData[] = [
         "- *render* — sounds serious, but it’s simple."
       ],
     },
-    "code": ['']
+    "code": []
   },
   {
-    id:29,
+    id: 29,
     "description": {
       header: '',
-      data: ["If you want plain text:"
+      data: [
+        "If you want plain text:"
       ],
     },
     "code": ['(row) => row.name']
   },
   {
-    id:30,
+    id: 30,
     "description": {
       header: '',
       data: ["If you want fancy JSX:"
       ],
     },
-    "code": [' <Badge color={row.status === "ready" ? "green" : "amber"}>',
+    "code": [
+      '<Badge color={row.status === "ready" ? "green" : "amber"}>',
       '  {row.status}',
-      ' </Badge>']
+      '</Badge>']
   },
   {
-    id:31,
+    id: 302,
     "description": {
-      header: '`filters` and `defaultFilters`',
+      header: '',
+      data: ["Column configuration for the table you are looking at:"
+      ],
+    },
+    "code": [
+      "export const docsColumns: TableColumnsColumns<NewData> = [",
+      "",
+      "  {",
+      "    id: \"description\",",
+      "    label: \"Description\",",
+      "    visible: true,",
+      "    render: (model) => (",
+      "      <>",
+      "        <Flex direction='column' gap='2'>",
+      "          <Heading>{model.description.header}</Heading>",
+      "          {model.description.data.map(item => (",
+      "            <Flex direction='column' gap='2'>",
+      "              <Text size='3'>{item}</Text>",
+      "            </Flex>",
+      "          ))}",
+      "        </Flex>",
+      "      </>",
+      "    )",
+      "  },",
+      "  {",
+      "    id: \"code\",",
+      "    label: \"Code\",",
+      "    visible: true,",
+      "    render: (model) => (",
+      "      <>",
+      "        <div className={model.code.length ? \"code-block\" : ''}>",
+      "          {model.code.map(item => item",
+      "            ? (",
+      "              <Flex direction='column' gap='2'>",
+      "                <span>{item}</span>",
+      "              </Flex>",
+      "            )",
+      "            : ''",
+      "          )}",
+      "        </div>",
+      "      </>",
+      "    )",
+      "  },",
+      "];",
+
+    ]
+  },
+  {
+    id: 31,
+    "description": {
+      header: 'filters and defaultFilters',
       data: ["Both are of type:"
       ],
     },
-    "code": ['type TableFiltersFilters<Filters> = {',
+    "code": [
+      'type TableFiltersFilters<Filters> = {',
       '  [K in keyof Filters]: string;',
       ' };',
     ]
   },
   {
-    id:32,
+    id: 32,
     "description": {
       header: '',
-      data: ["Since filters are broken and hidden in version 0.1, all you need is:",
+      data: [
+        "Since filters are broken and hidden in version 0.1, all you need is:",
         "- an interface",
         "- an object with empty strings",
         "- another object with empty strings",
         "That’s it."
       ],
     },
-    "code": ['']
+    "code": []
   },
   {
-    id:33,
+    id: 33,
     "description": {
       header: '',
-      data: ["Interface:"
+      data: [
+        "Interface:"
       ],
     },
     "code": ["export interface FiltersMock {",
@@ -430,7 +502,7 @@ export const docsData: NewData[] = [
     ]
   },
   {
-    id:34,
+    id: 34,
     "description": {
       header: '',
       data: ["Filters:"
@@ -450,7 +522,7 @@ export const docsData: NewData[] = [
     ]
   },
   {
-    id:35,
+    id: 35,
     "description": {
       header: '',
       data: ["Default filters:"
@@ -470,24 +542,52 @@ export const docsData: NewData[] = [
     ]
   },
   {
-    id:36,
+    id: 36,
     "description": {
       header: '',
       data: ["To be honest, you don’t need to think about this at all — just copy‑paste these three things and feed them to <ProbablyATable>.",
         "It requires them, but does nothing with them (yet)."
       ],
     },
-    "code": ["",
+    "code": []
+  },
+  {
+    id: 361,
+    "description": {
+      header: 'paginationConfig - optional',
+      data: [
+        "It's totally fine if you don't provide this prop — it's optional.",
+        "In that case, ProbablyATable will load the default configuration:"
+      ],
+    },
+    "code": [
+      'const defaultPaginationConfig: TablePaginationPageSizeConfig = {',
+      '  defaultPageSize: 10',
+      '  availablePageSizes: [5, 10, 20, 50, 100]',
+      '}'
     ]
   },
   {
-    id:37,
+    id: 361,
     "description": {
-      header: 'Final result',
-      data: [""
+      header: 'paginationConfig - optional',
+      data: [
+        "This means your table will show 10 rows by default (defaultPageSize), and the page size menu will let you choose from: 5, 10, 20, 50, 100.",
+        "If you want a different setup, just create your own configuration object of type TablePaginationPageSizeConfig."
       ],
     },
-    "code": ["<ProbablyATable ",
+    "code": []
+  },
+  {
+    id: 37,
+    "description": {
+      header: '',
+      data: [
+        "Final result:"
+      ],
+    },
+    "code": [
+      "<ProbablyATable ",
       "  columns={newDataColumns}",
       "  data={newData}",
       "  filters={filterMock}",
@@ -496,7 +596,7 @@ export const docsData: NewData[] = [
     ]
   },
   {
-    id:38,
+    id: 38,
     "description": {
       header: '',
       data: ["Well… the descriptions in the props section should cover everything you might need.  ",
@@ -513,16 +613,17 @@ export const docsData: NewData[] = [
         "",
       ],
     },
-    "code": [""]
+    "code": []
   },
   {
-    id:39,
+    id: 39,
     "description": {
       header: '',
       data: ["Here’s the full list of exported types:",
       ],
     },
-    "code": ["TableData<T extends {",
+    "code": [
+      "type TableData<T extends {",
       "    id: string | number;",
       "}> = T[];",
       "",
@@ -544,18 +645,6 @@ export const docsData: NewData[] = [
       "type TableColumnsColumns<T> = TableColumnsColumn<T>[];",
       "type TableColumnsToggleColumn = (id: string) => void;",
       "",
-      "interface TableWrapperProps<Data extends {",
-      "    id: string | number;",
-      "}, Filters> {",
-      "    columns: TableColumnsColumns<Data>;",
-      "    data: TableData<Data>;",
-      "    filters: TableFiltersFilters<Filters>;",
-      "    defaultFilters: TableFiltersFilters<Filters>;",
-      "}",
-      "declare function TableWrapper<Data extends {",
-      "    id: string | number;",
-      "}, Filters>(props: TableWrapperProps<Data, Filters>): react_jsx_runtime.JSX.Element;",
-      "",
       "type TableDragDragged = string | null;",
       "type TableDragSetDragged = React.Dispatch<React.SetStateAction<TableDragDragged>>;",
       "type TableDragHandleDrop = (targetKey: string) => void;",
@@ -565,6 +654,10 @@ export const docsData: NewData[] = [
       "type TablePaginationTotalPages = number;",
       "type TablePaginationPageSize = number;",
       "type TablePaginationSetPageSize = React.Dispatch<React.SetStateAction<TablePaginationPageSize>>;",
+      "interface TablePaginationPageSizeConfig {",
+      "    defaultPageSize: number;",
+      "    availablePageSizes: number[];",
+      "}",
       "",
       "type TableSearchSearch = string;",
       "type TableSearchSetSearch = React.Dispatch<React.SetStateAction<TableSearchSearch>>;",
@@ -575,54 +668,84 @@ export const docsData: NewData[] = [
       "    direction: TableSortDirection;",
       "};",
       "type TableSortToggleSort<Data> = (column: TableColumnsColumn<Data> | null) => void;",
-
+      "",
+      "interface ProbablyATableProps<Data extends {",
+      "    id: string | number;",
+      "}, Filters> {",
+      "    columns: TableColumnsColumns<Data>;",
+      "    data: TableData<Data>;",
+      "    filters: TableFiltersFilters<Filters>;",
+      "    defaultFilters: TableFiltersFilters<Filters>;",
+      "    paginationConfig?: TablePaginationPageSizeConfig;",
+      "}",
     ]
   },
   {
-    id:40,
+    id: 40,
     "description": {
       header: 'Examples of table',
-      data: ["All you need it this:"
+      data: ["All you need is this:"
       ],
     },
-    "code": ["<ProbablyATable ",
+    "code": [
+      "<ProbablyATable ",
       "    columns={newDataColumns} ",
       "    data={newData} ",
       "    filters={filterMock} ",
       "    defaultFilters={defaultFilters}",
       "/>",
     ]
-  }, 
+  },
   {
-    id:41,
+    id: 401,
+    "description": {
+      header: '',
+      data: ["Optionally:"
+      ],
+    },
+    "code": [
+      "<ProbablyATable ",
+      "    columns={newDataColumns} ",
+      "    data={newData} ",
+      "    filters={filterMock} ",
+      "    defaultFilters={defaultFilters}",
+      "    paginationConfig={paginationConfigData}",
+      "/>",
+    ]
+  },
+  {
+    id: 41,
     "description": {
       header: '',
       data: ["And all your creativity goes into the render field.",
         "Nothing else to mess with. Yet.",
-        "But filters in v0.2 will bring some fun. And pain...",
+        "But filters will bring some fun. And pain...",
       ],
     },
-    "code": ["",
-    ]
+    "code": []
   }, {
-    id:42,
+    id: 42,
     "description": {
       header: 'Roadmap',
       data: [
-        "v 0.2",
+        "v 0.2:",
+        "- [ ] Configurable menu position and visibility of its elements",
+        "- [ ] Merge `SimpleSearch` as a configurable part of the table",
+        "- [ ] Consider renaming some types — they’re really long, slightly epileptic in their current camelCase form, and honestly drive me mad",
+        "- [ ] Write a Python automation script so I don’t have to manually rewrite this README into the fancy JSX‑driven JSON that ProbablyATable likes",
+        "- [ ] Add an API to disable column sorting (I really hope no one gets the idea to sort my documentation steps alphabetically… unless someone genuinely enjoys puzzles). Also add a “reset sorting” button in the menu.",
+        "v 0.3:",
+        "- [ ] Fixing filters (read: remake them from scratch, but self‑generating and super cool, with zero consideration for feasibility — otherwise I’d never even touch this)",
+        "Wishlist for the future:",
+        "- [ ] Add optional built‑in styles so the table doesn’t depend on the user’s CSS setup",
         "- [ ] RTL-friendly API",
-        "- [ ] Fixing filter",
-        "- [ ] Adding API for pagination configuration",
-        "v 0.3",
-        "- [ ] Adding optional built‑in styles so the table doesn’t depend on the user’s CSS setup",
-        
+        "- [ ] JSDocs",
       ],
     },
-    "code": ["",
-    ]
-  }, 
+    "code": []
+  },
   {
-    id:43,
+    id: 43,
     "description": {
       header: 'Contributing',
       data: ["Emm… give me a moment, I’m new to this.",
@@ -631,13 +754,7 @@ export const docsData: NewData[] = [
         'More proper guidelines will appear here once I learn how to write them without crying.'
       ],
     },
-    "code": ["<ProbablyATable ",
-      "  columns={newDataColumns}",
-      "  data={newData}",
-      "  filters={filterMock}",
-      "  defaultFilters={defaultFilters}",
-      "/>",
-    ]
+    "code": []
   },
 ];
 
@@ -675,13 +792,16 @@ export const docsColumns: TableColumnsColumns<NewData> = [
     visible: true,
     render: (model) => (
       <>
-
-        {model.code.map(item => (
-          <Flex direction='column' gap='2'>
-            <Text size='3'>{item}</Text>
-          </Flex>
-        ))}
-
+        <div className={model.code.length ? "code-block" : ''}>
+          {model.code.map(item => item
+            ? (
+              <Flex direction='column' gap='2'>
+                <span>{item}</span>
+              </Flex>
+            )
+            : ''
+          )}
+        </div>
       </>
     )
   },

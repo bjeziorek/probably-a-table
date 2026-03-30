@@ -1,9 +1,39 @@
 @import "tailwindcss";
 @import "@radix-ui/themes/styles.css";
 
+
+
 .sr-only {
   visibility: hidden;
 }
+
+.code-block {
+  font-family:
+  "Fira Code",
+  "JetBrains Mono",
+  "Cascadia Code",
+  ui-monospace,
+  SFMono-Regular,
+  Menlo,
+  Monaco,
+  Consolas,
+  "Liberation Mono",
+  "Courier New",
+  monospace;
+;
+  background: var(--color-panel-translucent);
+  backdrop-filter: blur(6px);
+  color: var(--color-text);
+  padding: 1rem;
+  border-radius: var(--radius-3);
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border: 1px solid var(--color-border);
+}
+
+
 
 body {
   margin: 0;
