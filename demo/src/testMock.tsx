@@ -1,7 +1,7 @@
-import { t } from "i18next"
 import { TagIcon } from "lucide-react";
 import { Badge, Flex, Tooltip } from "@radix-ui/themes";
 import type { TableColumnsColumns, TableFiltersFilters } from "probably-a-table";
+
 
 export interface FiltersMock {
   query: string
@@ -252,7 +252,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     id: "size",
     label: "Size",
     visible: true,
-    render: (model) => t(model.size)
+    render: (model) => model.size
   },
   {
     id: "details",
@@ -267,7 +267,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     render: (model) => (
       <Flex gap="2" wrap="wrap">
         {model.tags.map((tag) => (
-          <Tooltip key={tag} content={tag}>
+          <Tooltip key={tag+'-'+model.id} content={tag}>
             <Badge
               key={tag}
               variant="soft"

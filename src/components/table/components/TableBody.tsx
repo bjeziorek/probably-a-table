@@ -1,6 +1,7 @@
 import { Table } from "@radix-ui/themes"
 import type { TableColumnsColumns } from "../../../types/columns";
 import type { TableData } from "../../../types/data";
+import { useTableUUID } from "../../../providers/TableProvider";
 
 interface TableBodyProps<Data extends { id: string | number; }> {
     paginated: TableData<Data>,
@@ -9,13 +10,14 @@ interface TableBodyProps<Data extends { id: string | number; }> {
 
 export function TableBody<Data extends { id: string | number; }>(props: TableBodyProps<Data>) {
     const { paginated, columns } = props;
+    const uuid = useTableUUID()
 
     return (
         <Table.Body>
             {paginated.map((model: Data) => (
-                <Table.Row key={model.id}>
+                <Table.Row key={'TBody-tblRow'+model.id+'-'+uuid}>
                     {columns.filter(c => c.visible).map(col => (
-                        <Table.Cell key={col?.id}>
+                        <Table.Cell key={'TBody+tblCell-'+col.id+'-'+uuid}>
                             {col.render(model)}
                         </Table.Cell>
                     ))}

@@ -2,6 +2,7 @@ import { Button, DropdownMenu, Flex, Select, Text } from "@radix-ui/themes";
 import type { TablePaginationPage, TablePaginationPageSize, TablePaginationPageSizeConfig, TablePaginationSetPage, TablePaginationSetPageSize, TablePaginationTotalPages } from "../types/pagination";
 import type { TableColumnsColumns, TableColumnsToggleColumn } from "../types/columns";
 import { defaultTranslations } from "./translations/defaultTranslations";
+import { useTableUUID } from "../providers/TableProvider";
 
 interface TableMenuProps<Data> {
     page: TablePaginationPage,
@@ -26,6 +27,8 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
         paginationConfig
     } = props;
 
+    const uuid = useTableUUID();
+
     return (
         <>
         <h2 className="sr-only">{defaultTranslations.tableMenuSR}</h2>
@@ -38,7 +41,7 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
                 <DropdownMenu.Content>
                     {columns.map(col => (
                         <DropdownMenu.CheckboxItem
-                            key={col.id}
+                            key={'TMenu-col-'+col.id+'-'+uuid}
                             checked={col.visible}
                             onCheckedChange={() => toggleColumn(col.id)}
                         >
@@ -75,7 +78,7 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
                 <Select.Trigger />
                 <Select.Content>
                     {paginationConfig.availablePageSizes.map(size=>(
-                           <Select.Item value={size.toString()}>{size}</Select.Item>
+                           <Select.Item key={'TMenu-pgSize-'+size+'-'+uuid} value={size.toString()}>{size}</Select.Item>
                     ))}
                 </Select.Content>
             </Select.Root>

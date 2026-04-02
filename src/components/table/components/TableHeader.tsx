@@ -2,6 +2,7 @@ import { Table } from "@radix-ui/themes"
 import type { TableColumnsColumn, TableColumnsColumns } from "../../../types/columns";
 import type { TableSortSort, TableSortToggleSort } from "../../../types/sort";
 import type { TableDragHandleDrop, TableDragSetDragged } from "../../../types/drag";
+import { useTableUUID } from "../../../providers/TableProvider";
 
 interface TableHeaderProps<Data> {
     setDragged: TableDragSetDragged,
@@ -13,12 +14,14 @@ interface TableHeaderProps<Data> {
 
 export function TableHeader<Data>(props: TableHeaderProps<Data>) {
     const { setDragged, handleDrop, columns, toggleSort, sort } = props;
+    const uuid = useTableUUID()
+
     return (
         <Table.Header>
             <Table.Row>
                 {columns.filter(c => c.visible).map((col: TableColumnsColumn<Data>) => (
                     <Table.ColumnHeaderCell
-                        key={col.id.toString()}
+                        key={'THead-Column-'+col.id+'-'+uuid}
                         draggable
                         onDragStart={() => setDragged(col.id)}
                         onDragOver={(e) => e.preventDefault()}

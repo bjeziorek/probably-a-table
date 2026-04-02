@@ -552,7 +552,7 @@ export const docsData: NewData[] = [
     "code": []
   },
   {
-    id: 361,
+    id: 362,
     "description": {
       header: 'paginationConfig - optional',
       data: [
@@ -777,8 +777,8 @@ export const docsColumns: TableColumnsColumns<NewData> = [
       <>
         <Flex direction='column' gap='2'>
           <Heading>{model.description.header}</Heading>
-          {model.description.data.map(item => (
-            <Flex direction='column' gap='2'>
+          {model.description.data.map((item,index) => (
+            <Flex key={'render-desc-'+model.id+'-'+index} direction='column' gap='2'>
               <Text size='3'>{item}</Text>
             </Flex>
           ))}
@@ -793,10 +793,10 @@ export const docsColumns: TableColumnsColumns<NewData> = [
     render: (model) => (
       <>
         <div className={model.code.length ? "code-block" : ''}>
-          {model.code.map(item => item
+          {model.code.map((item,index) => item
             ? (
-              <Flex direction='column' gap='2'>
-                <span>{item}</span>
+              <Flex key={'render-code-'+model.id+'-'+index} direction='column' gap='2'>
+                <span >{item}</span>
               </Flex>
             )
             : ''

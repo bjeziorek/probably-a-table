@@ -1,10 +1,10 @@
 {
   "name": "probably-a-table",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A table. Probably.",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
-  "main": "index.js",
+  "main": "dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -12,7 +12,9 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest",
     "build": "tsup src/index.ts --format esm,cjs --dts"
@@ -31,13 +33,12 @@
   "peerDependencies": {
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/themes": "^3.3.0",
-    "i18next": "^25.10.1",
     "lucide-react": "^0.577.0",
     "motion": "^12.38.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^16.6.0",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

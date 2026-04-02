@@ -6,6 +6,7 @@ export const defaultTranslations = {
     tableMenuPreviousBtn: "Previous",
     tableMenuPageLbl: "Page",
     tableMenuSR: "Table Menu",
+    tableSR: "Table",
 
     // simple search
     searchSimpleSeachSR: "Simple Search",

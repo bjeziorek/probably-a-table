@@ -1,5 +1,5 @@
 import { Card } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { useSort } from "../hooks/useSort/useSort";
 import { useFilter } from "../hooks/useFilter/useFilter";
 import { usePagination } from "../hooks/usePagination/usePagination";
@@ -10,10 +10,12 @@ import { TableFull } from "../components/table/TableFull";
 import type { TableData } from "../types/data";
 import type { TableFiltersFilters } from "../types/filters";
 import type { TableColumnsColumns } from "../types/columns";
-import { useTranslation } from "react-i18next";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { type TablePaginationPageSizeConfig } from "../types";
 import { defaultPaginationConfig } from "../defaultConfigs/defaultPaginationConfig";
+import { defaultTranslations } from "../components/translations/defaultTranslations";
+import { v4 as uuid } from "uuid"
+import { TableContext } from "../providers/TableProvider";
 
 interface ProbablyATableProps<Data extends { id: string | number; }, Filters> {
     columns: TableColumnsColumns<Data>,
@@ -26,24 +28,23 @@ interface ProbablyATableProps<Data extends { id: string | number; }, Filters> {
 export default function ProbablyATable<Data extends { id: string | number; }, Filters>(props: ProbablyATableProps<Data, Filters>) {
 
     // PROPS
-    const { 
-        columns: propCols, 
-        data: propData, 
-        filters: propFilters, 
-        defaultFilters, 
-        paginationConfig = defaultPaginationConfig 
+    const {
+        columns: propCols,
+        data: propData,
+        filters: propFilters,
+        defaultFilters,
+        paginationConfig = defaultPaginationConfig
     } = props;
 
     // STATES
     const [search, setSearch] = useState("");
-   // const [open, setOpen] = useState(false);
-
+    // const [open, setOpen] = useState(false);
 
     // CONSTS
     const debouncedSearch = useDebouncedValue(search, 300);
+    const tableUUID = useRef(uuid())
 
     // HOOKS
-    const { t } = useTranslation();
     const { filtered } = useFilter<Data, Filters>(propData, debouncedSearch, propFilters, defaultFilters);
     const { sortedData, sort, toggleSort } = useSort(filtered)
     const { paginated,
@@ -57,15 +58,9 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
         handleDrop,
         setDragged } = useColumns(propCols)
 
-        useEffect(() => {
-  console.log("search:", search);
-  console.log("debounced:", debouncedSearch);
-}, [search, debouncedSearch]);
-
-
     return (
-        <>
-            <h2 className='sr-only'>{t("table.tableMenu")}</h2>
+         <TableContext.Provider value={{ tableUUID: tableUUID.current }}>
+            <h2 className='sr-only'>{defaultTranslations.tableSR}</h2>
             <Card>
                 <SimpleSearch search={search} setSearch={setSearch}></SimpleSearch>
                 {/* <Filters open={open} setOpen={setOpen} isPending={isPending} filters={filters} setFilters={setFilters} handleReset={handleReset} ></Filters> */}
@@ -78,6 +73,6 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
 
                 <TableFull columns={columns} setDragged={setDragged} handleDrop={handleDrop} toggleSort={toggleSort} sort={sort} paginated={paginated}></TableFull>
             </Card>
-        </>
+         </TableContext.Provider>
     );
 }

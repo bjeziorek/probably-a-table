@@ -53,8 +53,7 @@ No button translations yet — just default English — and some `t()` leftovers
 - TypeScript
 
 ### Installation
-~~npm install probably-a-table~~  
-Hopefully soon.
+`npm install probably-a-table`
 
 In case you still want to play with it and don’t want to use npm (don’t harm yourself in such a way, unless you really enjoy it — I don’t judge) or there is no npm publish yet because lazy-always-busy-me didn’t do it yet (the only reasonable argument to look at this section), then:
 
@@ -404,6 +403,7 @@ But filters will bring some fun. And pain...
 - [ ] Consider renaming some types — they’re really long, slightly epileptic in their current camelCase form, and honestly drive me mad
 - [ ] Write a Python automation script so I don’t have to manually rewrite this README into the fancy JSX‑driven JSON that ProbablyATable likes
 - [ ] Add an API to disable column sorting (I really hope no one gets the idea to sort my documentation steps alphabetically… unless someone genuinely enjoys puzzles). Also add a “reset sorting” button in the menu.
+- [ ] Make filter props optional 
 
 
 ### v 0.3
@@ -413,7 +413,8 @@ But filters will bring some fun. And pain...
 - [ ] Add optional built‑in styles so the table doesn’t depend on the user’s CSS setup
 - [ ] RTL-friendly API
 - [ ] JSDocs
-7. Contributing
+
+## 7. Contributing
 Emm… give me a moment, I’m new to this.
 If you really want to contribute — amazing, thank you!
 Just open an issue or a PR and I’ll try to figure out what to do with it.
@@ -422,3 +423,15 @@ More proper guidelines will appear here once I learn how to write them without c
 
 ## 8. Demo link
 [Demo](https://bjeziorek.github.io/probably-a-table/)
+
+## Changelog
+
+### v0.1.2
+- Fixed leftover i18n-related conflicts in dependencies. Removed `i18next` and `react-i18next` from `peerDependencies`.
+
+- Fixed an issue with non‑unique keys. Added `uuid` to `peerDependencies`.
+
+- Updated outdated settings in `tsconfig.json`.
+
+### v0.1.1
+- Minor improvements to the README.
