@@ -1,7 +1,7 @@
 import './App.css'
 import { ProbablyATable } from './../../src'
-import { defaultFilters, filterMock, newData, newDataColumns } from './testMock'
-import { docsDefaultFilters, docsFilterMock, docsData, docsColumns } from './docs';
+import { newData, newDataColumns } from './testMock'
+import { docsData, docsColumns } from './docs';
 import { Card, Text } from '@radix-ui/themes'
 import type { TablePaginationPageSizeConfig } from 'probably-a-table';
 
@@ -31,8 +31,6 @@ function App() {
         <ProbablyATable
           columns={docsColumns}
           data={docsData}
-          filters={docsFilterMock}
-          defaultFilters={docsDefaultFilters}
           paginationConfig={paginationConfigDoc}
         />
         <br></br><br></br>
@@ -53,11 +51,8 @@ function App() {
         <ProbablyATable
           columns={newDataColumns}
           data={newData}
-          filters={filterMock}
-          defaultFilters={defaultFilters}
           paginationConfig={paginationConfigData}
         />
-
 
       </section>
     </>

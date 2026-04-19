@@ -1,5 +1,3 @@
-import { t } from "i18next"
-import { TagIcon } from "lucide-react";
 import { Badge, Button, Flex, Tooltip } from "@radix-ui/themes";
 import { TableColumnsColumns } from "../types/columns";
 import { loadModel } from "./utils/loadModel";
@@ -204,7 +202,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     id: "name",
     label: "Name",
     visible: true,
-    render: (model) => t(model.name)
+    render: (model) => model.name
   },
   {
     id: "description",
@@ -241,20 +239,6 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     )
   },
   {
-    id: "actions",
-    label: "Actions",
-    visible: true,
-    render: (model) => (
-      <Button
-        disabled={model.status !== "ready"}
-        variant="soft"
-        onClick={() => loadModel(model.id.toString())}
-      >
-        Load
-      </Button>
-    )
-  },
-  {
     id: "id",
     label: "ID",
     visible: true,
@@ -270,7 +254,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
     id: "size",
     label: "Size",
     visible: true,
-    render: (model) => t(model.size)
+    render: (model) => model.size
   },
   {
     id: "details",
@@ -292,7 +276,7 @@ export const newDataColumns: TableColumnsColumns<NewData> = [
               radius="full"
               color={tagColor(tag)}
             >
-              <TagIcon size={12} />
+              
               {tag}
             </Badge>
           </Tooltip>

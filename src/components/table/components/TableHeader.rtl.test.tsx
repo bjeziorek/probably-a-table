@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import userEvent from "@testing-library/user-event";
 import { TableHeader } from './TableHeader';
 import type { TableColumnsColumns } from '../../../types/columns';
+import { TableContext } from '../../../providers/TableProvider';
 
 describe('TableHeader tests', () => {
   interface Data {
@@ -19,13 +20,15 @@ describe('TableHeader tests', () => {
   it("renders only visible columns", () => {
     render(
       <Theme>
-        <TableHeader
-          columns={columns}
-          setDragged={() => { }}
-          handleDrop={() => { }}
-          toggleSort={() => { }}
-          sort={{ column: columns[0], direction: 'asc' }}
-        />
+        <TableContext.Provider value={{ tableUUID: "renders-only-visible-columns" }}>
+          <TableHeader
+            columns={columns}
+            setDragged={() => { }}
+            handleDrop={() => { }}
+            toggleSort={() => { }}
+            sort={{ column: columns[0], direction: 'asc' }}
+          />
+        </TableContext.Provider>
       </Theme>
     );
 
@@ -42,6 +45,7 @@ describe('TableHeader tests', () => {
 
     render(
       <Theme>
+         <TableContext.Provider value={{ tableUUID: "calls-toggleSort-when-clicking-a-column-header" }}>
         <TableHeader
           columns={columns}
           setDragged={() => { }}
@@ -49,6 +53,7 @@ describe('TableHeader tests', () => {
           toggleSort={toggleSort}
           sort={{ column: columns[0], direction: 'asc' }}
         />
+           </TableContext.Provider>
       </Theme>
     );
 
@@ -64,6 +69,7 @@ describe('TableHeader tests', () => {
 
     render(
       <Theme>
+         <TableContext.Provider value={{ tableUUID: "calls-setDragged-and-handleDrop-on-drag-events" }}>
         <TableHeader
           columns={columns}
           setDragged={setDragged}
@@ -71,6 +77,7 @@ describe('TableHeader tests', () => {
           toggleSort={() => { }}
           sort={{ column: columns[0], direction: 'asc' }}
         />
+           </TableContext.Provider>
       </Theme>
     );
 
@@ -86,6 +93,7 @@ describe('TableHeader tests', () => {
 
     render(
       <Theme>
+         <TableContext.Provider value={{ tableUUID: "shows-sort-indicator-for-sorted-column" }}>
         <TableHeader
           columns={columns}
           setDragged={() => { }}
@@ -93,6 +101,7 @@ describe('TableHeader tests', () => {
           toggleSort={() => { }}
           sort={{ column: columns[0], direction: 'asc' }}
         />
+           </TableContext.Provider>
       </Theme>
     );
 

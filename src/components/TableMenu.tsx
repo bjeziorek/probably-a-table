@@ -59,7 +59,7 @@ export function TableMenu<Data>(props: TableMenuProps<Data>) {
                 {defaultTranslations.tableMenuPreviousBtn}
             </Button>
             <Text>
-                {defaultTranslations.tableMenuPageLbl} {page} z {totalPages}
+                {defaultTranslations.tableMenuPageLbl} {page} {defaultTranslations.of} {totalPages}
             </Text>
             <Button
                 variant="soft"

@@ -7,6 +7,7 @@ export const defaultTranslations = {
     tableMenuPageLbl: "Page",
     tableMenuSR: "Table Menu",
     tableSR: "Table",
+    of: "of",
 
     // simple search
     searchSimpleSeachSR: "Simple Search",

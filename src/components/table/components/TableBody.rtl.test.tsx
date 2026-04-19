@@ -3,6 +3,7 @@ import { Theme } from '@radix-ui/themes';
 import { describe, expect, it, vi } from 'vitest';
 import type { TableColumnsColumns } from '../../../types/columns';
 import { TableBody } from './TableBody';
+import { TableContext } from '../../../providers/TableProvider';
 
 describe('TableHeader tests', () => {
 
@@ -28,7 +29,13 @@ describe('TableHeader tests', () => {
         ];
 
 
-        render(<Theme><TableBody paginated={data} columns={columns1} /></Theme>);
+        render(
+            <Theme>
+                <TableContext.Provider value={{ tableUUID: "renders-one-row-per-item-in-paginated" }}>
+                    <TableBody paginated={data} columns={columns1} />
+                </TableContext.Provider>
+            </Theme>
+        );
 
         const rows = screen.getAllByRole("row");
         expect(rows.length).toBe(data.length);
@@ -38,7 +45,13 @@ describe('TableHeader tests', () => {
         const data = [{ id: 1, name: "Alice", age: 30 }];
 
 
-        render(<TableBody paginated={data} columns={columns2} />);
+        render(
+            <Theme>
+                <TableContext.Provider value={{ tableUUID: "renders-only-visible-columns" }}>
+                    <TableBody paginated={data} columns={columns2} />
+                </TableContext.Provider>
+            </Theme>
+        );
 
         expect(screen.getByText("Alice")).toBeInTheDocument();
         expect(screen.queryByText("30")).not.toBeInTheDocument();
@@ -53,7 +66,13 @@ describe('TableHeader tests', () => {
             { id: "name", label: "Name", visible: true, render: renderName },
         ];
 
-        render(<TableBody paginated={data} columns={columns} />);
+        render(
+            <Theme>
+                <TableContext.Provider value={{ tableUUID: "calls-render-model-for-each-visible-column" }}>
+                    <TableBody paginated={data} columns={columns} />
+                </TableContext.Provider>
+            </Theme>
+        );
 
         expect(renderName).toHaveBeenCalledWith(data[0]);
     });
@@ -65,7 +84,13 @@ describe('TableHeader tests', () => {
             { id: "name", label: "Name", visible: true, render: (row) => `Hello ${row.name}` },
         ];
 
-        render(<TableBody paginated={data} columns={columns} />);
+        render(
+            <Theme>
+                <TableContext.Provider value={{ tableUUID: "renders-cell-content-returned-by-render" }}>
+                    <TableBody paginated={data} columns={columns} />
+                </TableContext.Provider>
+            </Theme>
+        );
 
         expect(screen.getByText("Hello Alice")).toBeInTheDocument();
     });

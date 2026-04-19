@@ -1,9 +1,18 @@
+if (!globalThis.ResizeObserver) {
+  globalThis.ResizeObserver = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+}
+
 import { render, screen } from '@testing-library/react';
 import { Theme } from '@radix-ui/themes';
 import { describe, expect, it, vi, type Mock } from 'vitest';
 import userEvent from "@testing-library/user-event";
 import { TableMenu } from './TableMenu';
 import type { Procedure } from '@vitest/spy';
+import { TableContext } from '../providers/TableProvider';
 
 describe('TableMenu tests', () => {
     it("opens columns dropdown", async () => {
@@ -11,15 +20,21 @@ describe('TableMenu tests', () => {
 
         render(
             <Theme>
-                <TableMenu
-                    page={1}
-                    setPage={() => { }}
-                    totalPages={5}
-                    setPageSize={() => { }}
-                    pageSize={10}
-                    columns={[{ id: "name", label: "Name", visible: true, render: () => null }]}
-                    toggleColumn={() => { }}
-                />
+                <TableContext.Provider value={{ tableUUID: "opens-columns-dropdown" }}>
+                    <TableMenu
+                        page={1}
+                        setPage={() => { }}
+                        totalPages={5}
+                        setPageSize={() => { }}
+                        pageSize={10}
+                        columns={[{ id: "name", label: "Name", visible: true, render: () => null }]}
+                        toggleColumn={() => { }}
+                        paginationConfig={{
+                            defaultPageSize: 10,
+                            availablePageSizes: [10, 20]
+                        }}
+                    />
+                </TableContext.Provider>
             </Theme>
         );
 
@@ -40,15 +55,20 @@ describe('TableMenu tests', () => {
 
         render(
             <Theme>
-                <TableMenu
-                    page={1}
-                    setPage={() => { }}
-                    totalPages={5}
-                    setPageSize={() => { }}
-                    pageSize={10}
-                    columns={[{ id: "name", label: "Name", visible: true, render: () => null }]}
-                    toggleColumn={toggleColumn}
-                />
+                <TableContext.Provider value={{ tableUUID: "2" }}>
+                    <TableMenu
+                        page={1}
+                        setPage={() => { }}
+                        totalPages={5}
+                        setPageSize={() => { }}
+                        pageSize={10}
+                        columns={[{ id: "name", label: "Name", visible: true, render: () => null }]}
+                        toggleColumn={toggleColumn}
+                        paginationConfig={{
+                            defaultPageSize: 10,
+                            availablePageSizes: [10, 20]
+                        }} />
+                </TableContext.Provider>
             </Theme>
         );
 
@@ -67,22 +87,28 @@ describe('TableMenu tests', () => {
 
         render(
             <Theme>
-                <TableMenu
-                    page={2}
-                    setPage={setPage}
-                    totalPages={5}
-                    setPageSize={() => { }}
-                    pageSize={10}
-                    columns={[]}
-                    toggleColumn={() => { }}
-                />
+                <TableContext.Provider value={{ tableUUID: "3" }}>
+                    <TableMenu
+                        page={2}
+                        setPage={setPage}
+                        totalPages={5}
+                        setPageSize={() => { }}
+                        pageSize={10}
+                        columns={[]}
+                        toggleColumn={() => { }}
+                        paginationConfig={{
+                            defaultPageSize: 10,
+                            availablePageSizes: [10, 20]
+                        }}
+                    />
+                </TableContext.Provider>
             </Theme>
         );
 
-        await user.click(screen.getByRole("button", { name: "Poprzednia" }));
+        await user.click(screen.getByRole("button", { name: "Previous" }));
         expect(setPage).toHaveBeenCalledWith(expect.any(Function));
 
-        await user.click(screen.getByRole("button", { name: "Następna" }));
+        await user.click(screen.getByRole("button", { name: "Next" }));
         expect(setPage).toHaveBeenCalledTimes(2);
     });
 

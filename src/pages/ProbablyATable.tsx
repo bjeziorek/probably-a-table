@@ -1,5 +1,5 @@
 import { Card } from "@radix-ui/themes";
-import { useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useSort } from "../hooks/useSort/useSort";
 import { useFilter } from "../hooks/useFilter/useFilter";
 import { usePagination } from "../hooks/usePagination/usePagination";
@@ -16,12 +16,13 @@ import { defaultPaginationConfig } from "../defaultConfigs/defaultPaginationConf
 import { defaultTranslations } from "../components/translations/defaultTranslations";
 import { v4 as uuid } from "uuid"
 import { TableContext } from "../providers/TableProvider";
+import { filter } from "../hooks/useFilter/utils/filter";
 
 interface ProbablyATableProps<Data extends { id: string | number; }, Filters> {
     columns: TableColumnsColumns<Data>,
     data: TableData<Data>,
-    filters: TableFiltersFilters<Filters>,
-    defaultFilters: TableFiltersFilters<Filters>,
+    filters?: TableFiltersFilters<Filters>,
+    defaultFilters?: TableFiltersFilters<Filters>,
     paginationConfig?: TablePaginationPageSizeConfig
 }
 
@@ -45,7 +46,14 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
     const tableUUID = useRef(uuid())
 
     // HOOKS
-    const { filtered } = useFilter<Data, Filters>(propData, debouncedSearch, propFilters, defaultFilters);
+    // const { filtered } = useFilter<Data, Filters>(propData, debouncedSearch, propFilters, defaultFilters);
+    
+        // version skipping filters
+    const filterFn1 = useCallback((m: Data) => filter(m, debouncedSearch), [debouncedSearch]);
+    const filtered = useMemo(() => [...propData]
+        .filter(filterFn1), [propData, filterFn1]);
+
+        
     const { sortedData, sort, toggleSort } = useSort(filtered)
     const { paginated,
         page,
@@ -59,8 +67,9 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
         setDragged } = useColumns(propCols)
 
     return (
-         <TableContext.Provider value={{ tableUUID: tableUUID.current }}>
+        <TableContext.Provider value={{ tableUUID: tableUUID.current }}>
             <h2 className='sr-only'>{defaultTranslations.tableSR}</h2>
+            <div>x: {search}</div>
             <Card>
                 <SimpleSearch search={search} setSearch={setSearch}></SimpleSearch>
                 {/* <Filters open={open} setOpen={setOpen} isPending={isPending} filters={filters} setFilters={setFilters} handleReset={handleReset} ></Filters> */}
@@ -73,6 +82,6 @@ export default function ProbablyATable<Data extends { id: string | number; }, Fi
 
                 <TableFull columns={columns} setDragged={setDragged} handleDrop={handleDrop} toggleSort={toggleSort} sort={sort} paginated={paginated}></TableFull>
             </Card>
-         </TableContext.Provider>
+        </TableContext.Provider>
     );
 }

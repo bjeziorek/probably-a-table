@@ -27,8 +27,17 @@ export function TableFull<Data extends { id: string | number; }>(props: TableFul
 
     return (
         <Table.Root>
-            <TableHeader setDragged={setDragged} handleDrop={handleDrop} columns={columns} toggleSort={toggleSort} sort={sort}></TableHeader>
-            <TableBody paginated={paginated} columns={columns}></TableBody>
+            <TableHeader
+                setDragged={setDragged}
+                handleDrop={handleDrop}
+                columns={columns}
+                toggleSort={toggleSort}
+                sort={sort}
+            />
+            <TableBody
+                paginated={paginated}
+                columns={columns}
+            />
         </Table.Root>
     )
 }

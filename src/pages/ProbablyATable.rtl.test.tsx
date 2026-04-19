@@ -1,18 +1,32 @@
+//     beforeAll(() => {
+//   global.ResizeObserver = class {
+//     observe() {}
+//     unobserve() {}
+//     disconnect() {}
+//   };
+// });
+// 
+
+import { describe, expect, it, vi } from 'vitest';
+// import '@testing-library/jest-dom';
+import "./../setupTests"
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Theme } from '@radix-ui/themes';
-import { describe, expect, it, vi } from 'vitest';
+
 import userEvent from "@testing-library/user-event";
 import { defaultFilters, filterMock, newData, newDataColumns } from '../testData/testMock';
 import ProbablyATable from './ProbablyATable';
+import { defaultTranslations } from '../components/translations/defaultTranslations';
 
 describe('TableWrapper renders and has required interactions', () => {
+
     it('renders table menu', () => {
         render(
             <Theme>
                 <ProbablyATable columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
             </Theme>
         );
-        expect(screen.getByText("table.tableMenu")).toBeInTheDocument();
+        expect(screen.getByText(defaultTranslations.tableMenuSR)).toBeInTheDocument();
     });
     it('renders simple search', () => {
         render(
@@ -20,7 +34,7 @@ describe('TableWrapper renders and has required interactions', () => {
                 <ProbablyATable columns={newDataColumns} data={newData} filters={filterMock} defaultFilters={defaultFilters} />
             </Theme>
         );
-        expect(screen.getByText("table.simpleSearch")).toBeInTheDocument();
+        expect(screen.getByText(defaultTranslations.searchSimpleSeachSR)).toBeInTheDocument();
     });
 
     it("renders search box", () => {

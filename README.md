@@ -1,6 +1,8 @@
 # probably-a-table
 A table. Probably.
 
+Probably‑a‑Table is a lightweight, headless React table component with pagination, sorting, column visibility toggling and customizable cell rendering. The rest of this README is written in a slightly unhinged deadpan tone. You’ve been warned.
+
 ## Description
 Another table library nobody asked for.
 There are a million better ones out there, but who’s going to stop me.
@@ -47,9 +49,8 @@ No button translations yet — just default English — and some `t()` leftovers
 
 ## 1. Installation
 ### Requirements
-- React 18
+- React 18+
 - Radix Themes
-- Tailwind
 - TypeScript
 
 ### Installation
@@ -77,9 +78,22 @@ Then publish:
 Now you can close this project and open any project where you want to use my probably-a-table. Add the package using:  
 `yalc add probably-a-table`
 
+Alternative to yalc (since yalc sometimes pretends Vite doesn’t exist):
+
+In the library, after building:  
+`npm link`
+
+In the project:  
+`npm link probably-a-table`
+
+Every `npm install` will remove the link, so just run  
+`npm link probably-a-table`  
+again afterwards.  
+You can check if it worked in `node_modules` — if the folder looks suspiciously symlink‑ish, it’s fine.
+
 ### Peer dependencies
 Run this command regardless of whether you use npm or yalc:  
-`npm install react react-dom @radix-ui/react-dropdown-menu @radix-ui/react-tooltip`
+`npm install react react-dom @radix-ui/react-dropdown-menu @radix-ui/react-tooltip uuid`
 
 ## 2. Quick Start
 `import { ProbablyATable } from "probably-a-table";`
@@ -91,8 +105,6 @@ export default function App() {
     <ProbablyATable
       data={data}
       columns={columns}
-      filters={filters}
-      defaultFilters={filters}
     />
   );
 }
@@ -118,7 +130,6 @@ If you want your own styles from scratch, feel free to ignore this section.
 Since the library is accidentally headless (= no styles), and you belong - like me - to the half of devs who would gladly yeet CSS into the sun, I have good news for you:
 you can turn on styling without writing a single line of CSS — just copy‑paste the code below into your `index.css`:
 ```js 
-@import "tailwindcss";
 @import "@radix-ui/themes/styles.css";
 .sr-only {
   visibility: hidden;
@@ -132,10 +143,9 @@ In a future version I might add some built‑in styles and let you toggle them t
 ## 3. API Reference
 
 ### ProbablyATable props
-- **data** — your raw table data as an array of any JSON objects. The table will swallow them as a generic type.
+- **data** — your raw table data as an array of objects. The table will swallow them as a generic type.
 - **columns** — the column configuration object.
-- **filters** — the filters configuration object (filters don’t work in version 0.1, so don’t bother — just copy‑paste the placeholder for now).
-- **defaultFilters** — same structure as `filters`. I might merge them in the future, not sure yet.
+- **paginationConfig** - the optional pagination configuration config, when skipped the table will load default configuration.
 
 ---
 
@@ -150,15 +160,8 @@ export const newData: NewData[] = [
   {
     "id": 1,
     "name": "Vision Encoder v3",
-    "description": "Model do ekstrakcji cech z obrazów.",
-    "baseModel": "resnet50",
-    "version": "3.2.1",
-    "loraCount": 1,
     "status": "ready",
-    "type": "vision",
     "tags": ["vision", "encoder"],
-    "size": "98M",
-    "details": "Model zoptymalizowany do szybkiej ekstrakcji cech."
   }
 ];
 ```
@@ -175,15 +178,8 @@ Will the world collapse because of one off‑name? Hopefully not.
 export interface NewData {
   id: number;
   name: string;
-  description: string;
-  baseModel: string;
-  version: string;
-  loraCount: number;
   status: "ready" | "loading";
-  type: string;
   tags: string[];
-  size: string;
-  details: string;
 }
 ```
 2. `columns`
@@ -210,71 +206,15 @@ If you want fancy JSX:
 )
 ```
 3. `filters` and `defaultFilters`
-Both are of type:
-```js 
-type TableFiltersFilters<Filters> = {
-  [K in keyof Filters]: string;
-};
-```
-Since filters are broken and hidden in version 0.1, all you need is:
-- an interface
-- an object with empty strings
-- another object with empty strings
-That’s it.
+They were removed from the required parameters because, at this stage, they were still mocked with placeholders, and having to provide them every single time was driving me crazy. So I made them optional — they don’t work yet, so you can completely ignore them for now. They’ll be introduced in one of the upcoming releases, and I’ll provide instructions for them then.
 
-Interface:
-```js 
-export interface FiltersMock {
-  query: string;
-  status: string;
-  type: string;
-  tag: string;
-  baseModel: string;
-  loraMin: string;
-  loraMax: string;
-  sizeMin: string;
-  sizeMax: string;
-}
-```
-
-Filters:
-```js
-export const filterMock: TableFiltersFilters<FiltersMock> = {
-  query: "",
-  status: "",
-  type: "",
-  tag: "",
-  baseModel: "",
-  loraMin: "",
-  loraMax: "",
-  sizeMin: "",
-  sizeMax: "",
-};
-```
-
-Default filters:
-```js
-export const defaultFilters: TableFiltersFilters<FiltersMock> = {
-  query: "",
-  status: "",
-  type: "",
-  tag: "",
-  baseModel: "",
-  loraMin: "",
-  loraMax: "",
-  sizeMin: "",
-  sizeMax: "",
-};
-```
-
-To be honest, you don’t need to think about this at all — just copy‑paste these three things and feed them to <ProbablyATable>.
-It requires them, but does nothing with them (yet).
+All previous versions remain compatible with the updated API. If you’ve already been passing those parameters somewhere, nothing bad will happen — they simply won’t be processed. And once they return, their API will stay the same.
 
 4. `paginationConfig` - optional
 It's totally fine if you don't provide this prop — it's optional.
 In that case, ProbablyATable will load the default configuration:
 ```js 
-const defaultPaginationConfig: TablePaginationPageSizeConfig = {
+const paginationConfig: TablePaginationPageSizeConfig = {
     defaultPageSize: 10,
     availablePageSizes: [5, 10, 20, 50, 100]
 }
@@ -290,8 +230,7 @@ If you want a different setup, just create your own configuration object of type
 <ProbablyATable 
   columns={newDataColumns}
   data={newData}
-  filters={filterMock}
-  defaultFilters={defaultFilters}
+  paginationConfig={paginationConfig}
 />
 ```
 
@@ -363,8 +302,8 @@ interface ProbablyATableProps<Data extends {
 }, Filters> {
     columns: TableColumnsColumns<Data>;
     data: TableData<Data>;
-    filters: TableFiltersFilters<Filters>;
-    defaultFilters: TableFiltersFilters<Filters>;
+    filters?: TableFiltersFilters<Filters>;
+    defaultFilters?: TableFiltersFilters<Filters>;
     paginationConfig?: TablePaginationPageSizeConfig;
 }
 declare function ProbablyATable<Data extends {
@@ -378,8 +317,6 @@ All you need is this:
 <ProbablyATable 
     columns={newDataColumns} 
     data={newData} 
-    filters={filterMock} 
-    defaultFilters={defaultFilters}
 />
 ```
 Optionally:
@@ -402,8 +339,17 @@ But filters will bring some fun. And pain...
 - [ ] Merge `SimpleSearch` as a configurable part of the table
 - [ ] Consider renaming some types — they’re really long, slightly epileptic in their current camelCase form, and honestly drive me mad
 - [ ] Write a Python automation script so I don’t have to manually rewrite this README into the fancy JSX‑driven JSON that ProbablyATable likes
-- [ ] Add an API to disable column sorting (I really hope no one gets the idea to sort my documentation steps alphabetically… unless someone genuinely enjoys puzzles). Also add a “reset sorting” button in the menu.
-- [ ] Make filter props optional 
+- [ ] Add an API to disable column sorting  
+      (I really hope no one gets the idea to sort my documentation steps alphabetically in the demo…  
+      unless someone genuinely enjoys puzzles — and “thanks” to the current bug in complex sorting,  
+      they can’t do it anyway. Not sure if that should make me happy or make me cry.)  
+- [ ] Also add a “reset sorting” button in the menu.
+
+- [x] Make filter props optional  
+      (Yeah, I know semver says API changes shouldn’t go into the last number…  
+      but since the major version is still 0 and filters never actually worked,  
+      I’m counting their removal as a bugfix. Not elegant, I know. I promise I won’t do this again.)
+
 
 
 ### v 0.3
@@ -426,6 +372,22 @@ More proper guidelines will appear here once I learn how to write them without c
 
 ## Changelog
 
+### v0.1.3
+- Updated the install command — added `uuid` to fix the “non‑unique IDs” warning.  
+  Not sure yet if I’ll keep it; I have an alternative idea to build my own tiny ID system so users don’t have to install extra libraries for something that isn’t crucial. For now, let it be `uuid`.
+
+- Removed unnecessary peer dependencies (`motion`, `tailwind`).
+  The table now has a draft of an internal English‑only translation system.  
+  An API for overriding translations will come in a future release.
+
+- Made filters optional while keeping full backward compatibility with the previous API.
+
+- Finally ran the exploding RTL tests.  
+  (The DOM inside the isolated library was completely messed up — Vite and tsup were not exactly best friends and decided to sabotage the config — but it seems to be behaving now.)
+
+- Updated the README and removed filters from the basic example to make getting started less painful.
+
+
 ### v0.1.2
 - Fixed leftover i18n-related conflicts in dependencies. Removed `i18next` and `react-i18next` from `peerDependencies`.
 
@@ -433,5 +395,10 @@ More proper guidelines will appear here once I learn how to write them without c
 
 - Updated outdated settings in `tsconfig.json`.
 
+- Removed debug console.logs.
+
 ### v0.1.1
 - Minor improvements to the README.
+
+## Known issues
+- [ ] Missing complex data‑sorting rules and default sorting behaviors; optional API for user‑defined sorting rules is planned for a future release.

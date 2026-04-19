@@ -118,12 +118,10 @@ export const docsData: NewData[] = [
     id: 9,
     "description": {
       header: 'Installation',
-      data: ["~~npm install probably-a-table~~  // doesn't work yet",
-        "Hopefully soon.",
-        "In case you still want to play with it and don’t want to use npm (don’t harm yourself in such a way, unless you really enjoy it — I don’t judge) or there is no npm publish yet because lazy-always-busy-me didn’t do it yet (the only reasonable argument to look at this section), then:",
+      data: ["In case you still want to play with it and don’t want to use npm (don’t harm yourself in such a way, unless you really enjoy it — I don’t judge) or there is no npm publish yet because lazy-always-busy-me didn’t do it yet (the only reasonable argument to look at this section), then:",
       ],
     },
-    "code": [],
+    "code": ['npm install probably-a-table'],
   },
   {
     id: 10,

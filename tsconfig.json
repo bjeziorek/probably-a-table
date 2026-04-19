@@ -11,8 +11,12 @@
         "emitDeclarationOnly": false,
         "outDir": "dist",
         "rootDir": "./src",
+        "types": [
+            "vitest",
+            "@testing-library/jest-dom"
+        ]
     },
     "include": [
         "src"
-    ]
+, "vitest.config.ts", "tsup.config.ts"    ]
 }
